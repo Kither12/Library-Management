@@ -1,0 +1,165 @@
+{
+	"book": [
+		{
+			"id": 0,
+			"availability": true,
+			"brand": "Emily Brontë",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/41k1JwQ6zVL.jpg",
+			"title": "Wuthering Heights (Collins Classics)",
+			"categories": ["Books", "Literature & Fiction", "Genre Fiction"]
+		},
+		{
+			"id": 1,
+			"availability": false,
+			"brand": "Drew Daywalt",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51q21jP9MtL.jpg",
+			"title": "THE DAYS THE CRAYONS QUIT",
+			"categories": ["Books", "Children's Books", "Literature & Fiction"]
+		},
+		{
+			"id": 2,
+			"availability": false,
+			"brand": "Bernard Cornwell",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51n75dtKIPL.jpg",
+			"title": "War Lord: Book 13 (The Last Kingdom Series)",
+			"categories": ["Books", "Literature & Fiction", "Genre Fiction"]
+		},
+		{
+			"id": 3,
+			"availability": true,
+			"brand": "David Walliams",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/513FzT0YbIL.jpg",
+			"title": "Code Name Bananas: The hilarious and epic new children’s book from multi-million bestselling author David Walliams",
+			"categories": ["Books", "Children's Books", "Literature & Fiction"]
+		},
+		{
+			"id": 4,
+			"availability": false,
+			"brand": "Caroline Hirons",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51agrdZp2BS.jpg",
+			"title": "Skincare: The award-winning ultimate no-nonsense guide and Sunday Times No. 1 best-seller",
+			"categories": ["Books", "Crafts, Hobbies & Home", "Home Improvement & Design"]
+		},
+		{
+			"id": 5,
+			"availability": true,
+			"brand": "J. R. R. Tolkien",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51iy3eo8+KL.jpg",
+			"title": "The Hobbit & The Lord of the Rings Boxed Set",
+			"categories": ["Books", "Literature & Fiction", "Mythology & Folk Tales"]
+		},
+		{
+			"id": 6,
+			"availability": true,
+			"brand": "J. R. R. Tolkien",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51KZEkcVYML.jpg",
+			"title": "The Silmarillion",
+			"categories": ["Books", "Literature & Fiction", "Genre Fiction"]
+		},
+		{
+			"id": 7,
+			"availability": true,
+			"brand": "C. S. Lewis",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51YGwxKn3CL.jpg",
+			"title": "The Chronicles of Narnia (Box Set)",
+			"categories": ["Books", "Children's Books", "Literature & Fiction"]
+		},
+		{
+			"id": 8,
+			"availability": false,
+			"brand": "Maurice Sendak",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/61zGOvBSgAL.jpg",
+			"title": "Where the Wild Things Are",
+			"categories": ["Books", "Children's Books", "Science Fiction & Fantasy"]
+		},
+		{
+			"id": 9,
+			"availability": false,
+			"brand": "Shel Silverstein",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/41m-Tm2wAqL.jpg",
+			"title": "The Giving Tree",
+			"categories": ["Books", "Children's Books", "Classics"]
+		},
+		{
+			"id": 10,
+			"availability": true,
+			"brand": "Benjamin GrahamJason Zweig",
+			"image_url": "https://images-na.ssl-images-amazon.com/images/I/41vQ4DGEmoL.jpg",
+			"title": "The Intelligent Investor Rev Ed.: The Definitive Book on Value Investing",
+			"categories": ["Books", "Business & Money", "Investing"]
+		}
+	],
+	"user": [
+		{
+			"id": 0,
+			"name": "Gazbia Emma",
+			"register_date": "2009-11-12",
+			"email": "mckenzie_cormier@gmail.com",
+      "banned": true
+		},
+		{
+			"id": 1,
+			"name": "Alma Kristoffer",
+			"register_date": "2010-02-09",
+			"email": "pamela64@hotmail.com",
+      "banned": true
+		},
+		{
+			"id": 2,
+			"name": "Zulfikar Spiros",
+			"register_date": "2010-08-02",
+			"email": "jonas31@yahoo.com",
+      "banned": false
+		},
+		{
+			"id": 3,
+			"name": "Marloes Landulf",
+			"register_date": "2013-06-12",
+			"email": "raegan_champlin93@yahoo.com",
+      "banned": false
+      
+		},
+		{
+			"id": 4,
+			"name": "Rameses Jaci",
+			"register_date": "2014-05-27",
+			"email": "donald10@yahoo.com",
+      "banned": true
+		},
+		{
+			"id": 5,
+			"name": "Bishal Sappheire",
+			"register_date": "2015-05-07",
+			"email": "dallin_fahey28@hotmail.com",
+      "banned": false
+		},
+		{
+			"id": 6,
+			"name": "Leila El",
+			"register_date": "2015-06-02",
+			"email": "jacques.ruecker30@yahoo.com",
+      "banned": false
+		},
+		{
+			"id": 7,
+			"name": "Angjelko Alwin",
+			"register_date": "2020-04-16",
+			"email": "carson.steuber@hotmail.com",
+      "banned": false
+		},
+		{
+			"id": 8,
+			"name": "Nikos Mohandas",
+			"register_date": "2021-01-08",
+			"email": "tito.littel55@yahoo.com",
+      "banned": false
+		},
+		{
+			"id": 9,
+			"name": "Saul Granit",
+			"register_date": "2021-11-04",
+			"email": "jazmyn.becker48@gmail.com",
+      "banned": true
+		}
+	]
+}
