@@ -1,9 +1,9 @@
 import UserPage from './user';
 
 async function getData() {
-	const res = await fetch(process.env.API_ENDPOINT + '/user');
+	const res = await fetch(`${process.env.API_ENDPOINT}/user`);
 	if (!res.ok) {
-		throw new Error('Failed to fetch data');
+    return undefined;
 	}
 	return res.json();
 }

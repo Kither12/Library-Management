@@ -136,17 +136,26 @@ export default function UserPage({ users }) {
 							numSelected={selected.length}
 							onRequestSort={handleSort}
 							onSelectAllClick={handleSelectAllClick}
-							headLabel={[{ id: 'name', label: 'Name' }, { id: 'email', label: 'Email' }, { id: 'registerDate', label: 'Register Date' }, { id: 'status', label: 'Status' }, { id: '' }]}
+							headLabel={[
+								{ id: 'name', label: 'Name' },
+								{ id: 'gender', label: 'Gender' },
+								{ id: 'email', label: 'Email' },
+								{ id: 'registerDate', label: 'Register Date' },
+								{ id: 'status', label: 'Status' },
+								{ id: '' },
+							]}
 						/>
 						<TableBody>
 							{dataFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
 								<UserTableRow
+									id={row.id}
 									key={row.id}
 									name={row.name}
-                  email={row.email}
-                  registerDate={row.register_date}
+									email={row.email}
+									isMale={row.is_male}
+									registerDate={row.register_date}
 									banned={row.banned}
-									avatarUrl="/assets/images/avatar-default.svg"
+									avatarUrl='/assets/images/avatar-default.svg'
 									selected={selected.indexOf(row.name) !== -1}
 									handleClick={(event) => handleClick(event, row.name)}
 								/>

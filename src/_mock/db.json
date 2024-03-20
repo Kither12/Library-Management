@@ -93,71 +93,91 @@
 		{
 			"id": 0,
 			"name": "Gazbia Emma",
+      "is_male": false, 
 			"register_date": "2009-11-12",
+      "birthday": "2014-05-27",
 			"email": "mckenzie_cormier@gmail.com",
       "banned": true
 		},
 		{
 			"id": 1,
 			"name": "Alma Kristoffer",
+      "is_male": true, 
 			"register_date": "2010-02-09",
+      "birthday": "2014-05-27",
 			"email": "pamela64@hotmail.com",
       "banned": true
 		},
 		{
-			"id": 2,
+      "id": 2,
 			"name": "Zulfikar Spiros",
+      "is_male": true, 
 			"register_date": "2010-08-02",
+      "birthday": "2014-05-27",
 			"email": "jonas31@yahoo.com",
       "banned": false
 		},
 		{
-			"id": 3,
+      "id": 3,
 			"name": "Marloes Landulf",
+      "is_male": true, 
 			"register_date": "2013-06-12",
+      "birthday": "2014-05-27",
 			"email": "raegan_champlin93@yahoo.com",
       "banned": false
       
 		},
 		{
-			"id": 4,
+      "id": 4,
 			"name": "Rameses Jaci",
+      "is_male": false, 
 			"register_date": "2014-05-27",
+			"birthday": "2014-05-27",
 			"email": "donald10@yahoo.com",
       "banned": true
 		},
 		{
-			"id": 5,
+      "id": 5,
 			"name": "Bishal Sappheire",
+      "is_male": false, 
 			"register_date": "2015-05-07",
+      "birthday": "2014-05-27",
 			"email": "dallin_fahey28@hotmail.com",
       "banned": false
 		},
 		{
-			"id": 6,
+      "id": 6,
 			"name": "Leila El",
+      "is_male": false, 
 			"register_date": "2015-06-02",
+      "birthday": "2014-05-27",
 			"email": "jacques.ruecker30@yahoo.com",
       "banned": false
 		},
 		{
-			"id": 7,
+      "id": 7,
 			"name": "Angjelko Alwin",
+      "is_male": true, 
 			"register_date": "2020-04-16",
+      "birthday": "2014-05-27",
 			"email": "carson.steuber@hotmail.com",
       "banned": false
 		},
 		{
-			"id": 8,
+      "id": 8,
 			"name": "Nikos Mohandas",
+      "is_male": true, 
 			"register_date": "2021-01-08",
+      "birthday": "2014-05-27",
 			"email": "tito.littel55@yahoo.com",
       "banned": false
 		},
 		{
-			"id": 9,
+      "id": 9,
 			"name": "Saul Granit",
+      "is_male": true, 
 			"register_date": "2021-11-04",
+      "birthday": "2014-05-27",
 			"email": "jazmyn.becker48@gmail.com",
       "banned": true
 		}

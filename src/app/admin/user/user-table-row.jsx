@@ -14,9 +14,10 @@ import IconButton from '@mui/material/IconButton';
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
 
+import Link from 'next/link';
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ selected, name, avatarUrl, email, registerDate, banned, handleClick }) {
+export default function UserTableRow({ id, selected, name, isMale, avatarUrl, email, registerDate, banned, handleClick }) {
 	const [open, setOpen] = useState(null);
 
 	const handleOpenMenu = (event) => {
@@ -43,6 +44,8 @@ export default function UserTableRow({ selected, name, avatarUrl, email, registe
 					</Stack>
 				</TableCell>
 
+				<TableCell>{(isMale && 'Male') || 'Female'}</TableCell>
+
 				<TableCell>{email}</TableCell>
 
 				<TableCell>{registerDate}</TableCell>
@@ -68,9 +71,16 @@ export default function UserTableRow({ selected, name, avatarUrl, email, registe
 					sx: { width: 140 },
 				}}
 			>
-				<MenuItem onClick={handleCloseMenu}>
-					<Iconify icon='eva:edit-fill' sx={{ mr: 2 }} />
-					Edit
+				<Link href={`/admin/user/edit/${id}`}>
+					<MenuItem onClick={handleCloseMenu}>
+						<Iconify icon='eva:edit-fill' sx={{ mr: 2 }} />
+						Edit
+					</MenuItem>
+				</Link>
+
+				<MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
+					<Iconify icon='eva:slash-fill' sx={{ mr: 2 }} />
+					Ban
 				</MenuItem>
 
 				<MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
