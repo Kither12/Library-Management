@@ -14,13 +14,13 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
-import { deleteUser, banUser } from './action/user-actions';
+import { deleteProduct } from './action/product-actions';
 
 import Link from 'next/link';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ id, selected, name, isMale, avatarUrl, email, registerDate, birthday, banned, handleClick }) {
+export default function ProductTableRow({ id, selected, title, author, added_date, total, checkout, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -30,17 +30,10 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 		setOpen(null);
 	};
 
-    const handleBanUser = async () => {
-        handleCloseMenu();
-        await banUser({ id });
-		mutate('http://localhost:3001/user');
-    };
-
-
-	const handleDeleteUser = async () => {
+	const handleDeleteProduct = async () => {
 		handleCloseMenu();
-		await deleteUser({ id });
-		mutate('http://localhost:3001/user');
+		await deleteProduct({ id });
+		mutate('http://localhost:3001/book');
 	};
 
 	return (
@@ -52,24 +45,20 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 
 				<TableCell component='th' scope='row' padding='none'>
 					<Stack direction='row' alignItems='center' spacing={2}>
-						<Avatar alt={name} src={avatarUrl} />
-						<Typography variant='subtitle2' noWrap>
-							{name}
-						</Typography>
+						{/* <Avatar alt={name} src={avatarUrl} /> */}
+						<Typography variant='subtitle2'>{title}</Typography>
 					</Stack>
 				</TableCell>
 
-				<TableCell>{(isMale && 'Male') || 'Female'}</TableCell>
-
-				<TableCell>{email}</TableCell>
-
-				<TableCell>{registerDate}</TableCell>
-
-				<TableCell>{birthday}</TableCell>
+				<TableCell>{author}</TableCell>
 
 				<TableCell>
-					<Label color={(banned && 'error') || 'success'}>{(banned && 'banned') || 'active'}</Label>
+					<Typography noWrap>{added_date}</Typography>
 				</TableCell>
+
+				<TableCell sx={{ textAlign: 'center' }}>{total}</TableCell>
+
+				<TableCell sx={{ textAlign: 'center' }}>{checkout}</TableCell>
 
 				<TableCell align='right'>
 					<IconButton onClick={handleOpenMenu}>
@@ -88,26 +77,14 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 					sx: { width: 200 },
 				}}
 			>
-				<Link href={`/admin/user/edit/${id}`} style={{ textDecoration: 'none' }}>
+				<Link href={`/admin/product/edit/${id}`} style={{ textDecoration: 'none' }}>
 					<MenuItem onClick={handleCloseMenu}>
 						<Iconify icon='eva:edit-fill' sx={{ mr: 2 }} />
 						Edit
 					</MenuItem>
 				</Link>
 
-				<Link href={`/admin/user/change-password/${id}`} style={{ textDecoration: 'none' }}>
-					<MenuItem onClick={handleCloseMenu} sx={{ color: 'warning.main' }}>
-						<Iconify icon='formkit:password' sx={{ mr: 2 }} />
-						Change password
-					</MenuItem>
-				</Link>
-
-				<MenuItem onClick={handleBanUser} sx={{ color: 'error.main' }}>
-					<Iconify icon='eva:slash-fill' sx={{ mr: 2 }} />
-					Ban
-				</MenuItem>
-
-				<MenuItem onClick={handleDeleteUser} sx={{ color: 'error.main' }}>
+				<MenuItem onClick={handleDeleteProduct} sx={{ color: 'error.main' }}>
 					<Iconify icon='eva:trash-2-outline' sx={{ mr: 2 }} />
 					Delete
 				</MenuItem>
@@ -116,7 +93,7 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 	);
 }
 
-UserTableRow.propTypes = {
+ProductTableRow.propTypes = {
 	avatarUrl: PropTypes.any,
 	company: PropTypes.any,
 	handleClick: PropTypes.func,

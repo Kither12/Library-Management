@@ -1,185 +1,192 @@
 {
-	"book": [
-		{
-			"id": 0,
-			"availability": true,
-			"brand": "Emily Brontë",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/41k1JwQ6zVL.jpg",
-			"title": "Wuthering Heights (Collins Classics)",
-			"categories": ["Books", "Literature & Fiction", "Genre Fiction"]
-		},
-		{
-			"id": 1,
-			"availability": false,
-			"brand": "Drew Daywalt",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51q21jP9MtL.jpg",
-			"title": "THE DAYS THE CRAYONS QUIT",
-			"categories": ["Books", "Children's Books", "Literature & Fiction"]
-		},
-		{
-			"id": 2,
-			"availability": false,
-			"brand": "Bernard Cornwell",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51n75dtKIPL.jpg",
-			"title": "War Lord: Book 13 (The Last Kingdom Series)",
-			"categories": ["Books", "Literature & Fiction", "Genre Fiction"]
-		},
-		{
-			"id": 3,
-			"availability": true,
-			"brand": "David Walliams",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/513FzT0YbIL.jpg",
-			"title": "Code Name Bananas: The hilarious and epic new children’s book from multi-million bestselling author David Walliams",
-			"categories": ["Books", "Children's Books", "Literature & Fiction"]
-		},
-		{
-			"id": 4,
-			"availability": false,
-			"brand": "Caroline Hirons",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51agrdZp2BS.jpg",
-			"title": "Skincare: The award-winning ultimate no-nonsense guide and Sunday Times No. 1 best-seller",
-			"categories": ["Books", "Crafts, Hobbies & Home", "Home Improvement & Design"]
-		},
-		{
-			"id": 5,
-			"availability": true,
-			"brand": "J. R. R. Tolkien",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51iy3eo8+KL.jpg",
-			"title": "The Hobbit & The Lord of the Rings Boxed Set",
-			"categories": ["Books", "Literature & Fiction", "Mythology & Folk Tales"]
-		},
-		{
-			"id": 6,
-			"availability": true,
-			"brand": "J. R. R. Tolkien",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51KZEkcVYML.jpg",
-			"title": "The Silmarillion",
-			"categories": ["Books", "Literature & Fiction", "Genre Fiction"]
-		},
-		{
-			"id": 7,
-			"availability": true,
-			"brand": "C. S. Lewis",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/51YGwxKn3CL.jpg",
-			"title": "The Chronicles of Narnia (Box Set)",
-			"categories": ["Books", "Children's Books", "Literature & Fiction"]
-		},
-		{
-			"id": 8,
-			"availability": false,
-			"brand": "Maurice Sendak",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/61zGOvBSgAL.jpg",
-			"title": "Where the Wild Things Are",
-			"categories": ["Books", "Children's Books", "Science Fiction & Fantasy"]
-		},
-		{
-			"id": 9,
-			"availability": false,
-			"brand": "Shel Silverstein",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/41m-Tm2wAqL.jpg",
-			"title": "The Giving Tree",
-			"categories": ["Books", "Children's Books", "Classics"]
-		},
-		{
-			"id": 10,
-			"availability": true,
-			"brand": "Benjamin GrahamJason Zweig",
-			"image_url": "https://images-na.ssl-images-amazon.com/images/I/41vQ4DGEmoL.jpg",
-			"title": "The Intelligent Investor Rev Ed.: The Definitive Book on Value Investing",
-			"categories": ["Books", "Business & Money", "Investing"]
-		}
-	],
-	"user": [
-		{
-			"id": 0,
-			"name": "Gazbia Emma",
-      "is_male": false, 
-			"register_date": "2009-11-12",
-      "birthday": "2014-05-27",
-			"email": "mckenzie_cormier@gmail.com",
-      "banned": true
-		},
-		{
-			"id": 1,
-			"name": "Alma Kristoffer",
-      "is_male": true, 
-			"register_date": "2010-02-09",
-      "birthday": "2014-05-27",
-			"email": "pamela64@hotmail.com",
-      "banned": true
-		},
-		{
-      "id": 2,
-			"name": "Zulfikar Spiros",
-      "is_male": true, 
-			"register_date": "2010-08-02",
-      "birthday": "2014-05-27",
-			"email": "jonas31@yahoo.com",
-      "banned": false
-		},
-		{
-      "id": 3,
-			"name": "Marloes Landulf",
-      "is_male": true, 
-			"register_date": "2013-06-12",
-      "birthday": "2014-05-27",
-			"email": "raegan_champlin93@yahoo.com",
-      "banned": false
-      
-		},
-		{
-      "id": 4,
-			"name": "Rameses Jaci",
-      "is_male": false, 
-			"register_date": "2014-05-27",
-			"birthday": "2014-05-27",
-			"email": "donald10@yahoo.com",
-      "banned": true
-		},
-		{
-      "id": 5,
-			"name": "Bishal Sappheire",
-      "is_male": false, 
-			"register_date": "2015-05-07",
-      "birthday": "2014-05-27",
-			"email": "dallin_fahey28@hotmail.com",
-      "banned": false
-		},
-		{
-      "id": 6,
-			"name": "Leila El",
-      "is_male": false, 
-			"register_date": "2015-06-02",
-      "birthday": "2014-05-27",
-			"email": "jacques.ruecker30@yahoo.com",
-      "banned": false
-		},
-		{
-      "id": 7,
-			"name": "Angjelko Alwin",
-      "is_male": true, 
-			"register_date": "2020-04-16",
-      "birthday": "2014-05-27",
-			"email": "carson.steuber@hotmail.com",
-      "banned": false
-		},
-		{
-      "id": 8,
-			"name": "Nikos Mohandas",
-      "is_male": true, 
-			"register_date": "2021-01-08",
-      "birthday": "2014-05-27",
-			"email": "tito.littel55@yahoo.com",
-      "banned": false
-		},
-		{
-      "id": 9,
-			"name": "Saul Granit",
-      "is_male": true, 
-			"register_date": "2021-11-04",
-      "birthday": "2014-05-27",
-			"email": "jazmyn.becker48@gmail.com",
-      "banned": true
-		}
-	]
+  "book": [
+    {
+      "id": "0",
+      "total": 10,
+      "checkout": 8,
+      "author": "Emily Brontë",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/41k1JwQ6zVL.jpg",
+      "title": "Wuthering Heights (Collins Classics)",
+      "description": "Wuthering Heights (Collins Classics) is a edition of Emily Brontë's classic gothic novel. The story unfolds on the windswept Yorkshire moors, where Lockwood, seeking shelter, stumbles upon Wuthering Heights, the brooding residence of his new landlord, Heathcliff."
+    },
+    {
+      "id": "1",
+      "total": 10,
+      "checkout": 8,
+      "author": "Drew Daywalt",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/51q21jP9MtL.jpg",
+      "title": "THE DAYS THE CRAYONS QUIT",
+      "description": "The Day the Crayons Quit is a children's book by Drew Daywalt and Oliver Jeffers. It tells the story of Duncan, a young boy who opens his crayon box one day to find, instead of his crayons, a stack of letters."
+    },
+    {
+      "id": "2",
+      "total": 10,
+      "checkout": 8,
+      "author": "Bernard Cornwell",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/51n75dtKIPL.jpg",
+      "title": "War Lord: Book 13 (The Last Kingdom Series)",
+      "description": "War Lord, by Bernard Cornwell, is the thirteenth and final book in the popular historical fiction series, The Last Kingdom. It serves as the epic conclusion to the saga of Uhtred, a warrior caught in the throes of shaping a unified England during the ninth and tenth centuries."
+    },
+    {
+      "id": "3",
+      "total": 10,
+      "checkout": 8,
+      "author": "David Walliams",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/513FzT0YbIL.jpg",
+      "title": "Code Name Bananas: The hilarious and epic new children's book from multi-million bestselling author David Walliams",
+      "description": "Code Name Bananas, published in 2020, is a children's adventure story by the multi-million bestselling author David Walliams, known for his funny and action-packed books."
+    },
+    {
+      "id": "4",
+      "total": 10,
+      "checkout": 8,
+      "author": "Caroline Hirons",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/51agrdZp2BS.jpg",
+      "title": "Skincare: The award-winning ultimate no-nonsense guide and Sunday Times No. 1 best-seller",
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea."
+    },
+    {
+      "id": "5",
+      "total": 10,
+      "checkout": 8,
+      "author": "J. R. R. Tolkien",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/51iy3eo8+KL.jpg",
+      "title": "The Hobbit & The Lord of the Rings Boxed Set",
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea."
+    },
+    {
+      "id": "6",
+      "total": 10,
+      "checkout": 8,
+      "author": "J. R. R. Tolkien",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/51KZEkcVYML.jpg",
+      "title": "The Silmarillion",
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea."
+    },
+    {
+      "id": "7",
+      "total": 10,
+      "checkout": 8,
+      "author": "C. S. Lewis",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/51YGwxKn3CL.jpg",
+      "title": "The Chronicles of Narnia (Box Set)",
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea."
+    },
+    {
+      "id": "8",
+      "total": 10,
+      "checkout": 8,
+      "author": "Maurice Sendak",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/61zGOvBSgAL.jpg",
+      "title": "Where the Wild Things Are",
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea."
+    },
+    {
+      "id": "9",
+      "total": 10,
+      "checkout": 8,
+      "author": "Shel Silverstein",
+      "added_date": "2024-12-06",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/41m-Tm2wAqL.jpg",
+      "title": "The Giving Tree",
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea."
+    },
+    {
+      "title": "Hello",
+      "author": "Benjamin GrahamJason Zweig",
+      "total": 10,
+      "description": "Lorem ipsum dolor sit amet, habemus expetendis id quo. Oporteat accommodare est ad, cu nec purto impetus, ea facete liberavisse duo. Ne mea mundi cetero oblique, omnis brute assueverit id sea, te sumo aperiri per. Eam quod summo vulputate ea.",
+      "id": "10"
+    }
+  ],
+  "user": [
+    {
+      "name": "Zulsafdsdffikar Spiros",
+      "is_male": "true",
+      "birthday": "2024-05-02",
+      "email": "jonas31@yahoo.com",
+      "id": "5"
+    },
+    {
+      "id": "dfa0",
+      "name": "Kitherr",
+      "is_male": true,
+      "birthday": "2024-05-02",
+      "email": "superminecraft2509@gmail.com",
+      "password": "865ae599025813d57b26cef68f3b33d269f45834378a1808a300a5d704bac18489c1d202a9d8c7348387d357d206750396a42ce579371290c2db78aaadb2721d"
+    },
+    {
+      "id": "8017",
+      "name": "Kither",
+      "is_male": true,
+      "birthday": "2024-05-02",
+      "email": "developerkither2509@gmail.com",
+      "password": "c3053184574070770f574018a6681e549f6b92a658528ad8f14d6a66c2f9a72ba99e64175d4cc920b8be66a66c2d66756f523c2b3cd6ee3534d0fd67b96c65cd"
+    },
+    {
+      "id": "f4fb",
+      "name": "ELib",
+      "is_male": true,
+      "birthday": "2024-05-02",
+      "email": "developerkither2509@gmail.com",
+      "password": "6d9297a32a2c35791b26dd0227110879ca59dc8c116f1890a702f0bee0845e2defd2de4857c6b290177590bb52d6126dd0486d580d8a658a248169a32ad9e306"
+    },
+    {
+      "id": "8578",
+      "name": "Kither",
+      "is_male": false,
+      "birthday": "2024-05-02",
+      "email": "developerkither2509@gmail.com",
+      "password": "60c8c2ed374dbf5856c39f8212577889e1827cb2b8195ba3e46d626a4b20bc1f0d53f78e597909c3f23521df8bab6ca83ffe3567f90c44ffefbb6b23f31a9166"
+    },
+    {
+      "id": "bda0",
+      "name": "ELib",
+      "is_male": true,
+      "birthday": "2024-05-03",
+      "email": "developerkither2509@gmail.com",
+      "password": "6a5dcd0b9ce82c0418955d9c21e88d288a4c52ca576f668f0c5fa27bf4170d877015ebb8da52ff770ac4a0255bfbc59f7291bbff4ba2d56cc912c90fcbf1192d"
+    },
+    {
+      "id": "b422",
+      "name": "Admin",
+      "is_male": true,
+      "birthday": "2024-05-03",
+      "email": "superminecraft2509@gmail.com",
+      "password": "e1fe377d03b49ef6b9a0b661575b4856c8e7ecbf393cf2c681f2f8d23caa765beb582dc4662dc2c2d48432df937f3d6e049cfdd5936622c80d6e1df8ccdd3b8f"
+    },
+    {
+      "id": "d835",
+      "name": "Bocchi",
+      "is_male": false,
+      "birthday": "2024-05-03",
+      "email": "superminecraft2509@gmail.com",
+      "password": "61a3a26a5061a36f3aad47897e35d9595bd2f16ce4fad496e5971950b3900c4cd6d365035b31d050d6faf9439f39f998f52105ac5e509d2ab7c4113ab42eae4d"
+    },
+    {
+      "id": "eb4c",
+      "name": "Admin",
+      "is_male": true,
+      "birthday": "2024-05-03",
+      "email": "superminecraft2509@gmail.com",
+      "password": "c640fc7252263dae080dbb79a6e580a4f8594762b6b3f39ead50b12fcf3cdb0e6c5f02fc004e22b10e4b4b730a1c2155596388ffee250c14c2727fa79a3e49fa"
+    },
+    {
+      "id": "69e0",
+      "name": "jskdfjsdfa",
+      "is_male": false,
+      "birthday": "2024-05-10",
+      "email": "developerkither2509@gmail.com",
+      "password": "4090849d17b6e8a6c493aa7658269f22577ccce2526149e8ff2f4b9b1ec776ee3bb7e2172d81e8a6ae0bc4e648aa110ce5e72155541be5e21c287f090654963b"
+    }
+  ]
 }

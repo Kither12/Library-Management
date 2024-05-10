@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -19,14 +19,14 @@ import UserTableRow from './user-table-row';
 import UserTableHead from './user-table-head';
 import TableEmptyRows from './table-empty-rows';
 import UserTableToolbar from './user-table-toolbar';
+import { useDebouncedCallback } from 'use-debounce';
 import { applyFilter, getComparator } from './utils';
+import useUser from '@/app/hook/useUser';
+import LoadingProgress from '@/components/loading';
 import Link from 'next/link';
-
-import { debounce } from 'lodash';
-
 // ----------------------------------------------------------------------
 
-export default function UserPage({ users }) {
+export default function UserPage() {
 	const [page, setPage] = useState(0);
 
 	const [order, setOrder] = useState('asc');
@@ -39,11 +39,22 @@ export default function UserPage({ users }) {
 
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 
-	const [hasMounted, setHasMounted] = useState(false);
-
 	const [dataFiltered, setDataFiltered] = useState([]);
 
-	const filterData = debounce(
+	const { users, isLoading, isError } = useUser();
+
+	useEffect(() => {
+        if(users == undefined) return;
+		setDataFiltered(
+			applyFilter({
+				inputData: users,
+				comparator: getComparator(order, orderBy),
+				filterName,
+			})
+		);
+	}, [users]);
+
+	const filterData = useDebouncedCallback(
 		() =>
 			setDataFiltered(
 				applyFilter({
@@ -59,13 +70,9 @@ export default function UserPage({ users }) {
 		filterData();
 	}, [order, orderBy, filterName]);
 
-	useEffect(() => {
-		setHasMounted(true);
-	}, []);
-	if (!hasMounted) {
-		return null;
+	if (isLoading) {
+		return <LoadingProgress />;
 	}
-
 	const handleSort = (event, id) => {
 		const isAsc = orderBy === id && order === 'asc';
 		if (id !== '') {
@@ -141,6 +148,7 @@ export default function UserPage({ users }) {
 								{ id: 'gender', label: 'Gender' },
 								{ id: 'email', label: 'Email' },
 								{ id: 'registerDate', label: 'Register Date' },
+								{ id: 'birthday', label: 'Birthday' },
 								{ id: 'status', label: 'Status' },
 								{ id: '' },
 							]}
@@ -154,6 +162,7 @@ export default function UserPage({ users }) {
 									email={row.email}
 									isMale={row.is_male}
 									registerDate={row.register_date}
+									birthday={row.birthday}
 									banned={row.banned}
 									avatarUrl='/assets/images/avatar-default.svg'
 									selected={selected.indexOf(row.name) !== -1}
