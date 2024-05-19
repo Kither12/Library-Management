@@ -124,12 +124,7 @@ export default function ProductPage() {
 	return (
 		<Container>
 			<Stack direction='row' alignItems='center' justifyContent='space-between' mb={5}>
-				<Typography variant='h4'>Books</Typography>
-				<Link href='/admin/product/add'>
-					<Button variant='contained' color='inherit' startIcon={<Iconify icon='eva:plus-fill' />}>
-						New book
-					</Button>
-				</Link>
+				<Typography variant='h4'>Rented books</Typography>
 			</Stack>
 
 			<Card>

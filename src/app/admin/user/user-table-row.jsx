@@ -20,7 +20,7 @@ import Link from 'next/link';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ id, selected, name, isMale, avatarUrl, email, registerDate, birthday, banned, handleClick }) {
+export default function UserTableRow({ id, selected, name, isMale, avatarUrl, email, registerDate, birthday, address, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -67,9 +67,7 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 
 				<TableCell>{birthday}</TableCell>
 
-				<TableCell>
-					<Label color={(banned && 'error') || 'success'}>{(banned && 'banned') || 'active'}</Label>
-				</TableCell>
+				<TableCell>{address}</TableCell>
 
 				<TableCell align='right'>
 					<IconButton onClick={handleOpenMenu}>
@@ -102,10 +100,10 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 					</MenuItem>
 				</Link>
 
-				<MenuItem onClick={handleBanUser} sx={{ color: 'error.main' }}>
+				{/* <MenuItem onClick={handleBanUser} sx={{ color: 'error.main' }}>
 					<Iconify icon='eva:slash-fill' sx={{ mr: 2 }} />
 					Ban
-				</MenuItem>
+				</MenuItem> */}
 
 				<MenuItem onClick={handleDeleteUser} sx={{ color: 'error.main' }}>
 					<Iconify icon='eva:trash-2-outline' sx={{ mr: 2 }} />

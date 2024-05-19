@@ -61,7 +61,7 @@ export default function ShopProductCard({ product }) {
 						{product.title}
 					</Link>
 				</Tooltip>
-                <Typography color="green">Available: 10</Typography>
+                {/* <Typography color="green">Available: 10</Typography> */}
 			</Stack>    
 		</Card>
 	);

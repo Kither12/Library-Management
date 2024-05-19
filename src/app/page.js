@@ -13,4 +13,5 @@ export default function Home() {
 //   else{
 //     redirect('/api/auth/login');
 //   }
+    redirect('/login');
 }

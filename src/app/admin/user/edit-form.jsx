@@ -14,10 +14,11 @@ const FormDataSchema = z.object({
 	name: z.string().min(1, { message: 'Name is required.' }),
 	email: z.string().email({ message: 'Invalid email address' }),
 	gender: z.any(),
+    address: z.string().min(1, { message: 'Address is required.' }),
 	birthday: z.any(),
 });
 
-export default function EditUser({ id, name, email, isMale, bday }) {
+export default function EditUser({ id, name, email, address, isMale, bday }) {
 	const [birthday, setBirthday] = React.useState(bday);
 	const {
 		control,
@@ -35,6 +36,7 @@ export default function EditUser({ id, name, email, isMale, bday }) {
 			name: data.name,
 			is_male: data.gender,
 			birthday: dayjs(birthday).format("YYYY-MM-DD"),
+            address: data.address,
 			email: data.email,
 		});
 	};
@@ -46,6 +48,7 @@ export default function EditUser({ id, name, email, isMale, bday }) {
 					<Typography variant='h4'>Edit user</Typography>
 					<TextField {...register('name')} error={errors.name?.message} helperText={errors.name?.message && errors.name.message} label='Name' sx={{ width: '100%' }} defaultValue={name || ''} />
 					<TextField {...register('email')} error={errors.email?.message} helperText={errors.email?.message && errors.email.message} label='Email' sx={{ width: '100%' }} defaultValue={email || ''} />
+					<TextField {...register('address')} error={errors.address?.message} helperText={errors.address?.message && errors.address.message} label='Address' sx={{ width: '100%' }} defaultValue={address || ''} />
 					<Stack direction='row' spacing={2}>
 						<TextField {...register('gender')} select label='Gender' sx={{ width: '40%' }} defaultValue={isMale}>
 							<MenuItem value={true}>Male</MenuItem>

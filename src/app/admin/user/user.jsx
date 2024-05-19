@@ -149,7 +149,7 @@ export default function UserPage() {
 								{ id: 'email', label: 'Email' },
 								{ id: 'registerDate', label: 'Register Date' },
 								{ id: 'birthday', label: 'Birthday' },
-								{ id: 'status', label: 'Status' },
+								{ id: 'address', label: 'Address' },
 								{ id: '' },
 							]}
 						/>
@@ -163,7 +163,7 @@ export default function UserPage() {
 									isMale={row.is_male}
 									registerDate={row.register_date}
 									birthday={row.birthday}
-									banned={row.banned}
+									address={row.address}
 									avatarUrl='/assets/images/avatar-default.svg'
 									selected={selected.indexOf(row.name) !== -1}
 									handleClick={(event) => handleClick(event, row.name)}

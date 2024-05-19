@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
 import Iconify from '@/components/iconify';
-import { deleteProduct } from './action/product-actions';
+import { returnProduct } from './action/product-actions';
 
 import Link from 'next/link';
 
@@ -73,16 +73,9 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					sx: { width: 200 },
 				}}
 			>
-				<Link href={`/admin/product/edit/${id}`} style={{ textDecoration: 'none' }}>
-					<MenuItem onClick={handleCloseMenu}>
-						<Iconify icon='eva:edit-fill' sx={{ mr: 2 }} />
-						Edit
-					</MenuItem>
-				</Link>
-
 				<MenuItem onClick={handleDeleteProduct} sx={{ color: 'error.main' }}>
 					<Iconify icon='eva:trash-2-outline' sx={{ mr: 2 }} />
-					Delete
+					Return
 				</MenuItem>
 			</Popover>
 		</>

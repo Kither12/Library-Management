@@ -16,7 +16,8 @@ const FormDataSchema = z.object({
 	name: z.string().min(1, { message: 'Name is required.' }),
 	email: z.string().email({ message: 'Invalid email address' }),
 	password: z.string().min(6, { message: 'Password length must be greater than 6' }).max(32, 'Password length must be less than 32'),
-	gender: z.any(),
+	address: z.string().min(1, {message: "Address is required."}),
+    gender: z.any(),
 	birthday: z.any(),
 });
 
@@ -39,6 +40,7 @@ export default function AddUser() {
 			is_male: data.gender,
 			birthday: dayjs(birthday).format("YYYY-MM-DD"),
 			email: data.email,
+            address: data.address,
 			password: sha3_512(data.password),
 		});
 	};
@@ -58,6 +60,7 @@ export default function AddUser() {
 						sx={{ width: '100%' }}
 						type='password'
 					/>
+					<TextField {...register('address')} error={errors.address?.message} helperText={errors.address?.message && errors.address.message} label='Address' sx={{ width: '100%' }} />
 					<Stack direction='row' spacing={2}>
 						<TextField {...register('gender')} select label='Gender' sx={{ width: '40%' }}>
 							<MenuItem value={true}>Male</MenuItem>
