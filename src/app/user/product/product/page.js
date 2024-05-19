@@ -1,4 +1,5 @@
-import ProductsView from './product';
+import ProductsView from "../product";
+
 
 async function getData() {
 	const res = await fetch(process.env.API_ENDPOINT + '/book');

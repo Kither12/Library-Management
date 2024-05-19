@@ -1,17 +1,11 @@
 'use client'
-import { faker } from '@faker-js/faker';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-
-import AppNewsUpdate from './app-news-update';
-import AppOrderTimeline from './app-order-timeline';
 import AppCurrentBook from './app-current-visits';
 import AppWebsiteVisits from './app-website-visits';
 import AppWidgetSummary from './app-widget-summary';
-import AppCurrentSubject from './app-current-subject';
-import AppConversionRates from './app-conversion-rates';
 
 // ----------------------------------------------------------------------
 
