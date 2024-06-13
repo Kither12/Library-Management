@@ -2,7 +2,7 @@ import EditUser from '../../edit-form';
 import { notFound } from 'next/navigation';
 
 async function getData(id) {
-	const res = await fetch(`${process.env.API_ENDPOINT}/user?id=${id}`);
+	const res = await fetch(`http://localhost:3001/api/readers/${id}`);
 	if (!res.ok) {
 		return undefined;
 	}
@@ -10,9 +10,9 @@ async function getData(id) {
 }
 
 export default async function EditUserPage({ params }) {
-	const user = (await getData(params.id))[0];
+	const user = (await getData(params.id)).data;
 	if (!user) {
 		notFound();
 	}
-	return <EditUser id={params.id} name={user.name} email={user.email} isMale={user.is_male} birthday={user.birthday} />;
+	return <EditUser id={params.id} name={user.name} email={user.email} address={user.address} phoneNumber={user.phoneNumber} bday={user.dateOfBirth} readerType={user.readerType.id}/>;
 }

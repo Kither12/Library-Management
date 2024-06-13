@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-
+import dayjs from 'dayjs';
 import Iconify from '@/components/iconify';
 import { returnProduct } from './action/product-actions';
 
@@ -18,7 +18,7 @@ import Link from 'next/link';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ id, selected, title, author, added_date, genre, handleClick }) {
+export default function ProductTableRow({ id, selected, title, author, added_date, rent_date, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -37,9 +37,7 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 	return (
 		<>
 			<TableRow hover tabIndex={-1} role='checkbox' selected={selected}>
-				<TableCell padding='checkbox'>
-					<Checkbox disableRipple checked={selected} onChange={handleClick} />
-				</TableCell>
+				<TableCell padding='checkbox'>{/* <Checkbox disableRipple checked={selected} onChange={handleClick} /> */}</TableCell>
 
 				<TableCell component='th' scope='row' padding='none'>
 					<Stack direction='row' alignItems='center' spacing={2}>
@@ -48,22 +46,18 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					</Stack>
 				</TableCell>
 
-				<TableCell>{author}</TableCell>
+				<TableCell>{rent_date}</TableCell>
 
-				<TableCell>
-					<Typography noWrap>{added_date}</Typography>
-				</TableCell>
-
-				<TableCell>{genre}</TableCell>
+				<Typography noWrap>{dayjs(added_date).format("YYYY-MM-DD")}</Typography>
 
 				<TableCell align='right'>
-					<IconButton onClick={handleOpenMenu}>
+					{/* <IconButton onClick={handleOpenMenu}>
 						<Iconify icon='eva:more-vertical-fill' />
-					</IconButton>
+					</IconButton> */}
 				</TableCell>
 			</TableRow>
 
-			<Popover
+			{/* <Popover
 				open={!!open}
 				anchorEl={open}
 				onClose={handleCloseMenu}
@@ -77,7 +71,7 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					<Iconify icon='eva:trash-2-outline' sx={{ mr: 2 }} />
 					Return
 				</MenuItem>
-			</Popover>
+			</Popover> */}
 		</>
 	);
 }

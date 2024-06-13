@@ -13,12 +13,13 @@ import IconButton from '@mui/material/IconButton';
 
 import Iconify from '@/components/iconify';
 import { deleteProduct } from './action/product-actions';
+import Notiflix from 'notiflix';
 
 import Link from 'next/link';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ id, selected, title, author, added_date, genre, handleClick }) {
+export default function ProductTableRow({ id, selected, title, author, publisher, genre, added_date, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -31,7 +32,8 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 	const handleDeleteProduct = async () => {
 		handleCloseMenu();
 		await deleteProduct({ id });
-		mutate('http://localhost:3001/book');
+		mutate('http://localhost:8000/book');
+        Notiflix.Notify.success("Delete successfully");
 	};
 
 	return (
@@ -50,11 +52,11 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 
 				<TableCell>{author}</TableCell>
 
-				<TableCell>
-					<Typography noWrap>{added_date}</Typography>
-				</TableCell>
+				<TableCell>{publisher}</TableCell>
 
 				<TableCell>{genre}</TableCell>
+
+				<TableCell>{added_date}</TableCell>
 
 				<TableCell align='right'>
 					<IconButton onClick={handleOpenMenu}>
@@ -77,6 +79,12 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					<MenuItem onClick={handleCloseMenu}>
 						<Iconify icon='eva:edit-fill' sx={{ mr: 2 }} />
 						Edit
+					</MenuItem>
+				</Link>
+				<Link href={`/admin/product/rent/${id}`} style={{ textDecoration: 'none' }}>
+					<MenuItem onClick={handleCloseMenu}>
+						<Iconify icon='material-symbols:book-outline' sx={{ mr: 2 }} />
+						Rent
 					</MenuItem>
 				</Link>
 

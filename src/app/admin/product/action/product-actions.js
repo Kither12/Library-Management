@@ -2,7 +2,7 @@
 import { redirect } from 'next/navigation';
 
 export async function addBook(formData) {
-	await fetch(`${process.env.API_ENDPOINT}/book`, {
+	await fetch(`http://127.0.0.1:8000/book`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ export async function addBook(formData) {
 	redirect(`/admin/product`);
 }
 export async function editBook(id, formData) {
-	await fetch(`${process.env.API_ENDPOINT}/book/${id}`, {
+	await fetch(`http://127.0.0.1:8000/book/${id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -22,7 +22,18 @@ export async function editBook(id, formData) {
 	redirect(`/admin/product`);
 }
 export async function deleteProduct({ id }) {
-	await fetch(`${process.env.API_ENDPOINT}/book/${id}`, {
+	await fetch(`http://127.0.0.1:8000/book/${id}`, {
 		method: 'DELETE',
 	});
+}
+
+export async function rentProduct(formData) {
+	await fetch(`http://127.0.0.1:8000/rent`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(formData),
+	});
+	redirect(`/admin/product`);
 }

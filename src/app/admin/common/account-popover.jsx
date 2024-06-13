@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import { account } from '@/_mock/account';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { logout } from '@/app/login/login-action';
 
 // ----------------------------------------------------------------------
 
@@ -43,8 +44,8 @@ export default function AccountPopover() {
 		setOpen(null);
 	};
 
-	const handleLogout = () => {
-		redirect('/admin/user');
+	const handleLogout = async () => {
+        await logout();
 	};
 
 	return (
@@ -98,11 +99,9 @@ export default function AccountPopover() {
 				</Box>
 
 				<Divider sx={{ borderStyle: 'dashed', m: 0 }} />
-				<Link href="/api/auth/logout" style={{ textDecoration: 'none' }}>
-					<MenuItem sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}>
-						Logout
-					</MenuItem>
-				</Link>
+                <MenuItem onClick={handleLogout} sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}>
+                    Logout
+                </MenuItem>
 			</Popover>
 		</>
 	);

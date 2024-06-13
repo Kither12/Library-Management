@@ -2,7 +2,7 @@ import EditBook from '../../edit-form';
 import { notFound } from 'next/navigation';
 
 async function getData(id) {
-	const res = await fetch(`${process.env.API_ENDPOINT}/book?id=${id}`);
+	const res = await fetch(`http://localhost:8000/book?id=${id}`);
 	if (!res.ok) {
 		return undefined;
 	}
@@ -14,5 +14,5 @@ export default async function EditProductPage({ params }) {
 	if (!book) {
 		notFound();
 	}
-	return <EditBook id={params.id} title={book.title} author={book.author} total={book.total} description={book.description}/>;
+	return <EditBook id={params.id} title={book.title} author={book.author} total={book.total} description={book.description} publisher={book.publisher}/>;
 }

@@ -20,6 +20,7 @@ import Iconify from '@/components/iconify';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { login } from './login-action';
 
 const FormDataSchema = z.object({
 	email: z.string().email({ message: 'Invalid email address' }),
@@ -42,13 +43,10 @@ export default function LoginView() {
 	});
 
 	const processForm = async (data) => {
-		// await addUser({
-		// 	name: data.name,
-		// 	is_male: data.gender,
-		// 	birthday: dayjs(birthday).format("YYYY-MM-DD"),
-		// 	email: data.email,
-		// 	password: sha3_512(data.password),
-		// });
+		await login({
+			usrname: data.email,
+			password: data.password,
+		});
 	};
 
 	const renderForm = (

@@ -21,7 +21,7 @@ import TableEmptyRows from './table-empty-rows';
 import ProductTableToolbar from './product-table-toolbar';
 import { useDebouncedCallback } from 'use-debounce';
 import { applyFilter, getComparator } from './utils';
-import useBook from '@/app/hook/useBook';
+import useBook, { useRentBookCook } from '@/app/hook/useBook';
 import LoadingProgress from '@/components/loading';
 import Link from 'next/link';
 // ----------------------------------------------------------------------
@@ -41,7 +41,7 @@ export default function ProductPage() {
 
 	const [dataFiltered, setDataFiltered] = useState([]);
 
-	const { books, isLoading, isError } = useBook();
+	const { books, isLoading, isError } = useRentBookCook();
 
 	useEffect(() => {
 		if (books == undefined) return;
@@ -128,7 +128,7 @@ export default function ProductPage() {
 			</Stack>
 
 			<Card>
-				<ProductTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+				{/* <ProductTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} /> */}
 				<TableContainer sx={{ overflow: 'unset' }}>
 					<Table sx={{ width: "100%" }}>
 						<ProductTableHead
@@ -140,9 +140,8 @@ export default function ProductPage() {
 							onSelectAllClick={handleSelectAllClick}
 							headLabel={[
 								{ id: 'title', label: 'Title', width: "40%"},
-								{ id: 'author', label: 'Author' },
+								{ id: 'rent days', label: 'Rent days' },
 								{ id: 'added date', label: 'Added date' },
-								{ id: 'genre', label: 'Genre' },
 								{ id: '' },
 							]}
 						/>
@@ -152,9 +151,8 @@ export default function ProductPage() {
 									id={row.id}
 									key={row.id}
 									title={row.title}
-									author={row.author}
-									added_date={row.added_date}
-                                    genre={row.genre}
+									added_date={row.add_date}
+                                    rent_date={row.rent_date}
 									selected={selected.indexOf(row.name) !== -1}
 									handleClick={(event) => handleClick(event, row.name)}
 								/>

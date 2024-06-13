@@ -11,13 +11,16 @@ import { z } from 'zod';
 import { sha3_512 } from 'js-sha3';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import Notiflix from 'notiflix';
+import { signup } from '@/app/login/login-action';
 
 const FormDataSchema = z.object({
 	name: z.string().min(1, { message: 'Name is required.' }),
 	email: z.string().email({ message: 'Invalid email address' }),
 	password: z.string().min(6, { message: 'Password length must be greater than 6' }).max(32, 'Password length must be less than 32'),
-	address: z.string().min(1, {message: "Address is required."}),
-    gender: z.any(),
+	address: z.string().min(1, { message: 'Address is required.' }),
+	phoneNumber: z.coerce.number({ message: 'Phone number must be number.' }),
+	readerType: z.any(),
 	birthday: z.any(),
 });
 
@@ -36,13 +39,21 @@ export default function AddUser() {
 
 	const processForm = async (data) => {
 		await addUser({
+            id: data.email, 
 			name: data.name,
-			is_male: data.gender,
-			birthday: dayjs(birthday).format("YYYY-MM-DD"),
+			fullName: data.name,
+			readerTypeId: data.readerType,
+			dateOfBirth: dayjs(birthday),
+			phoneNumber: data.phoneNumber,
+			address: data.address,
 			email: data.email,
-            address: data.address,
-			password: sha3_512(data.password),
+			status: '',
 		});
+        await signup({
+            email: data.email,
+            password: data.password,
+        })
+        Notiflix.Notify.success("Add user succesfully");
 	};
 
 	return (
@@ -61,27 +72,40 @@ export default function AddUser() {
 						type='password'
 					/>
 					<TextField {...register('address')} error={errors.address?.message} helperText={errors.address?.message && errors.address.message} label='Address' sx={{ width: '100%' }} />
-					<Stack direction='row' spacing={2}>
-						<TextField {...register('gender')} select label='Gender' sx={{ width: '40%' }}>
-							<MenuItem value={true}>Male</MenuItem>
-							<MenuItem value={false}>Female</MenuItem>
-						</TextField>
-						<DatePicker
-							sx={{ width: '100%' }}
-							error={errors.birthday?.message}
-							slotProps={{
-								textField: {
-									helperText: errors.birthday?.message && errors.birthday.message,
-								},
-							}}
-							label='Birthday'
-							onChange={(value) => {
-								setBirthday(value);
-							}}
-							value={birthday}
-						/>
-						<input type='hidden' {...register('birthday')} value={dayjs(birthday).format('YYYY-MM-DD')} />
-					</Stack>
+					<TextField
+						{...register('phoneNumber')}
+						error={errors.phoneNumber?.message}
+						helperText={errors.phoneNumber?.message && errors.phoneNumber.message}
+						label='Phone Number'
+						sx={{ width: '100%' }}
+					/>
+					<TextField
+						select
+						{...register('readerType')}
+						error={errors.readerType?.message}
+						helperText={errors.readerType?.message && errors.readerType.message}
+						label='Reader Type'
+						sx={{ width: '100%' }}
+					>
+						<MenuItem key={1} value={1}>A</MenuItem>
+						<MenuItem key={2} value={2}>B</MenuItem>
+						<MenuItem key={3} value={3}>C</MenuItem>
+					</TextField>
+					<DatePicker
+						sx={{ width: '100%' }}
+						error={errors.birthday?.message}
+						slotProps={{
+							textField: {
+								helperText: errors.birthday?.message && errors.birthday.message,
+							},
+						}}
+						label='Birthday'
+						onChange={(value) => {
+							setBirthday(value);
+						}}
+						value={birthday}
+					/>
+					<input type='hidden' {...register('birthday')} value={dayjs(birthday).format('YYYY-MM-DD')} />
 					<Stack direction='row' spacing={2} justifyContent='end'>
 						<Button type='submit' variant='contained' color='success'>
 							Confirm

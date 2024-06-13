@@ -22,6 +22,16 @@ const navConfig = [
     path: '/admin/product',
     icon: icon('ic_book'),
   },
+  {
+    title: 'config',
+    path: '/admin/config',
+    icon: icon('ic_lock'),
+  },
+  {
+    title: 'fine',
+    path: '/admin/fine',
+    icon: icon('ic_blog'),
+  },
 ];
 
 export default navConfig;

@@ -11,16 +11,17 @@ import MenuItem from '@mui/material/MenuItem';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-
+import dayjs from 'dayjs';
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
 import { deleteUser, banUser } from './action/user-actions';
 
 import Link from 'next/link';
+import { Notify } from 'notiflix';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ id, selected, name, isMale, avatarUrl, email, registerDate, birthday, address, handleClick }) {
+export default function UserTableRow({ id, selected, name, avatarUrl, phoneNumber, email, readerType, birthday, address, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -30,17 +31,17 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 		setOpen(null);
 	};
 
-    const handleBanUser = async () => {
-        handleCloseMenu();
-        await banUser({ id });
-		mutate('http://localhost:3001/user');
-    };
-
+	// const handleBanUser = async () => {
+	//     handleCloseMenu();
+	//     await banUser({ id });
+	// 	mutate('http://localhost:3001/api/readers');
+	// };
 
 	const handleDeleteUser = async () => {
 		handleCloseMenu();
 		await deleteUser({ id });
-		mutate('http://localhost:3001/user');
+		mutate('http://localhost:3001/api/readers');
+        Notify.success("Delete successfully");
 	};
 
 	return (
@@ -50,6 +51,7 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 					<Checkbox disableRipple checked={selected} onChange={handleClick} />
 				</TableCell>
 
+				<TableCell>{id}</TableCell>
 				<TableCell component='th' scope='row' padding='none'>
 					<Stack direction='row' alignItems='center' spacing={2}>
 						<Avatar alt={name} src={avatarUrl} />
@@ -59,13 +61,13 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 					</Stack>
 				</TableCell>
 
-				<TableCell>{(isMale && 'Male') || 'Female'}</TableCell>
-
 				<TableCell>{email}</TableCell>
 
-				<TableCell>{registerDate}</TableCell>
+				<TableCell>{phoneNumber}</TableCell>
 
-				<TableCell>{birthday}</TableCell>
+				<TableCell>{dayjs(birthday).format('YYYY-MM-DD')}</TableCell>
+
+				<TableCell align='center'>{readerType}</TableCell>
 
 				<TableCell>{address}</TableCell>
 
@@ -100,10 +102,12 @@ export default function UserTableRow({ id, selected, name, isMale, avatarUrl, em
 					</MenuItem>
 				</Link>
 
-				{/* <MenuItem onClick={handleBanUser} sx={{ color: 'error.main' }}>
-					<Iconify icon='eva:slash-fill' sx={{ mr: 2 }} />
-					Ban
-				</MenuItem> */}
+				<Link href={`/admin/user/rent/${id}`} style={{ textDecoration: 'none' }}>
+					<MenuItem onClick={handleCloseMenu}>
+						<Iconify icon='material-symbols:book-outline' sx={{ mr: 2 }} />
+						Rent Book
+					</MenuItem>
+				</Link>
 
 				<MenuItem onClick={handleDeleteUser} sx={{ color: 'error.main' }}>
 					<Iconify icon='eva:trash-2-outline' sx={{ mr: 2 }} />

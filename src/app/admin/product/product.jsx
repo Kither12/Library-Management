@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
+import { mutate } from 'swr';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -18,12 +18,14 @@ import TableNoData from './table-no-data';
 import ProductTableRow from './product-table-row';
 import ProductTableHead from './product-table-head';
 import TableEmptyRows from './table-empty-rows';
+import { deleteProduct } from './action/product-actions';
 import ProductTableToolbar from './product-table-toolbar';
 import { useDebouncedCallback } from 'use-debounce';
 import { applyFilter, getComparator } from './utils';
 import useBook from '@/app/hook/useBook';
 import LoadingProgress from '@/components/loading';
 import Link from 'next/link';
+import Notiflix from 'notiflix';
 // ----------------------------------------------------------------------
 
 export default function ProductPage() {
@@ -67,8 +69,9 @@ export default function ProductPage() {
 	);
 
 	useEffect(() => {
+		if (books == undefined) return;
 		filterData();
-	}, [order, orderBy, filterName]);
+	}, [order, orderBy, filterName, books]);
 
 	if (isLoading) {
 		return <LoadingProgress />;
@@ -83,11 +86,20 @@ export default function ProductPage() {
 
 	const handleSelectAllClick = (event) => {
 		if (event.target.checked) {
-			const newSelecteds = books.map((n) => n.name);
+			const newSelecteds = books.map((n) => n.id);
 			setSelected(newSelecteds);
 			return;
 		}
 		setSelected([]);
+	};
+
+	const handleDelete = () => {
+		selected.forEach(async (id) => {
+			await deleteProduct({ id });
+			mutate('http://localhost:8000/book');
+		});
+		setSelected([]);
+        Notiflix.Notify.success("Delete successfully");
 	};
 
 	const handleClick = (event, name) => {
@@ -133,9 +145,9 @@ export default function ProductPage() {
 			</Stack>
 
 			<Card>
-				<ProductTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+				<ProductTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} onDelete={handleDelete} />
 				<TableContainer sx={{ overflow: 'unset' }}>
-					<Table sx={{ width: "100%" }}>
+					<Table sx={{ width: '100%' }}>
 						<ProductTableHead
 							order={order}
 							orderBy={orderBy}
@@ -144,10 +156,11 @@ export default function ProductPage() {
 							onRequestSort={handleSort}
 							onSelectAllClick={handleSelectAllClick}
 							headLabel={[
-								{ id: 'title', label: 'Title', width: "40%"},
+								{ id: 'title', label: 'Title', width: '40%' },
 								{ id: 'author', label: 'Author' },
-								{ id: 'added date', label: 'Added date' },
+								{ id: 'publisher', label: 'Publisher' },
 								{ id: 'genre', label: 'Genre' },
+								{ id: 'added_date', label: 'Added date' },
 								{ id: '' },
 							]}
 						/>
@@ -158,10 +171,11 @@ export default function ProductPage() {
 									key={row.id}
 									title={row.title}
 									author={row.author}
+									publisher={row.publisher}
+									genre={row.genre}
 									added_date={row.added_date}
-                                    genre={row.genre}
-									selected={selected.indexOf(row.name) !== -1}
-									handleClick={(event) => handleClick(event, row.name)}
+									selected={selected.indexOf(row.id) !== -1}
+									handleClick={(event) => handleClick(event, row.id)}
 								/>
 							))}
 							{notFound && <TableNoData query={filterName} />}

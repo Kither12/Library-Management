@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import ThemeProvider from '../theme';
-import { UserProvider } from '@auth0/nextjs-auth0/client';
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,13 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
-			<UserProvider>
-				<AppRouterCacheProvider>
-					<ThemeProvider>
-						<body className={inter.className}>{children}</body>
-					</ThemeProvider>
-				</AppRouterCacheProvider>
-			</UserProvider>
+            <Script src="dist/notiflix-aio-3.2.7.min.js"></Script>
+            <AppRouterCacheProvider>
+                <ThemeProvider>
+                    <body className={inter.className}>{children}</body>
+                </ThemeProvider>
+            </AppRouterCacheProvider>
 		</html>
 	);
 }

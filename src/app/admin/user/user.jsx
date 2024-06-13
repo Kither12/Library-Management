@@ -17,13 +17,15 @@ import Iconify from '@/components/iconify';
 import TableNoData from './table-no-data';
 import UserTableRow from './user-table-row';
 import UserTableHead from './user-table-head';
-import TableEmptyRows from './table-empty-rows';
+import { deleteUser } from './action/user-actions';
 import UserTableToolbar from './user-table-toolbar';
 import { useDebouncedCallback } from 'use-debounce';
 import { applyFilter, getComparator } from './utils';
 import useUser from '@/app/hook/useUser';
 import LoadingProgress from '@/components/loading';
 import Link from 'next/link';
+import { mutate } from 'swr';
+import Notiflix from 'notiflix';
 // ----------------------------------------------------------------------
 
 export default function UserPage() {
@@ -67,8 +69,9 @@ export default function UserPage() {
 	);
 
 	useEffect(() => {
+        if(users == undefined) return;
 		filterData();
-	}, [order, orderBy, filterName]);
+	}, [users, order, orderBy, filterName]);
 
 	if (isLoading) {
 		return <LoadingProgress />;
@@ -83,7 +86,7 @@ export default function UserPage() {
 
 	const handleSelectAllClick = (event) => {
 		if (event.target.checked) {
-			const newSelecteds = users.map((n) => n.name);
+			const newSelecteds = users.map((n) => n.id);
 			setSelected(newSelecteds);
 			return;
 		}
@@ -104,6 +107,15 @@ export default function UserPage() {
 		}
 		setSelected(newSelected);
 	};
+
+    const HandleDeleteSelected = () => {
+        selected.forEach(async (id) => {
+            await deleteUser({ id });
+            mutate('http://localhost:3001/api/readers');
+        })
+        setSelected([]);
+        Notiflix.Notify.success("Delete successfully");
+    }
 
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
@@ -133,7 +145,7 @@ export default function UserPage() {
 			</Stack>
 
 			<Card>
-				<UserTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+				<UserTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} onDeleted={HandleDeleteSelected}/>
 				<TableContainer sx={{ overflow: 'unset' }}>
 					<Table sx={{ minWidth: 800 }}>
 						<UserTableHead
@@ -144,11 +156,12 @@ export default function UserPage() {
 							onRequestSort={handleSort}
 							onSelectAllClick={handleSelectAllClick}
 							headLabel={[
+								{ id: 'id', label: 'id' },
 								{ id: 'name', label: 'Name' },
-								{ id: 'gender', label: 'Gender' },
 								{ id: 'email', label: 'Email' },
-								{ id: 'registerDate', label: 'Register Date' },
+								{ id: 'phoneNumber', label: 'PhoneNumber' },
 								{ id: 'birthday', label: 'Birthday' },
+								{ id: 'type', label: 'Reader Type' },
 								{ id: 'address', label: 'Address' },
 								{ id: '' },
 							]}
@@ -160,13 +173,13 @@ export default function UserPage() {
 									key={row.id}
 									name={row.name}
 									email={row.email}
-									isMale={row.is_male}
-									registerDate={row.register_date}
-									birthday={row.birthday}
+                                    phoneNumber={row.phoneNumber}
+                                    readerType={row.readerType.name}
+									birthday={row.dateOfBirth}
 									address={row.address}
 									avatarUrl='/assets/images/avatar-default.svg'
-									selected={selected.indexOf(row.name) !== -1}
-									handleClick={(event) => handleClick(event, row.name)}
+									selected={selected.indexOf(row.id) !== -1}
+									handleClick={(event) => handleClick(event, row.id)}
 								/>
 							))}
 							{notFound && <TableNoData query={filterName} />}
