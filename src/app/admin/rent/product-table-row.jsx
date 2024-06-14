@@ -18,7 +18,7 @@ import Link from 'next/link';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ id, selected, title, author, added_date, rent_date, handleClick }) {
+export default function ProductTableRow({ id, selected, title, user_id, added_date, rent_date, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -46,9 +46,12 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					</Stack>
 				</TableCell>
 
+				<TableCell>{user_id}</TableCell>
+
 				<TableCell>{dayjs(rent_date).format("YYYY-MM-DD")}</TableCell>
 
 				<TableCell>{dayjs(added_date).format("YYYY-MM-DD")}</TableCell>
+				<TableCell></TableCell>
 			</TableRow>
 
 			{/* <Popover

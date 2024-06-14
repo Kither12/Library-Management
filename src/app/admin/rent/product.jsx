@@ -140,6 +140,7 @@ export default function ProductPage() {
 							onSelectAllClick={handleSelectAllClick}
 							headLabel={[
 								{ id: 'title', label: 'Title', width: "40%"},
+								{ id: 'userId', label: 'UserID'},
 								{ id: 'rent days', label: 'Deadline' },
 								{ id: 'added date', label: 'Added date' },
 								{ id: '' },
@@ -151,6 +152,7 @@ export default function ProductPage() {
 									id={row.id}
 									key={row.id}
 									title={row.title}
+                                    user_id={row.user_id}
 									added_date={row.add_date}
                                     rent_date={row.dead_line}
 									selected={selected.indexOf(row.name) !== -1}

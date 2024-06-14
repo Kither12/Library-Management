@@ -23,9 +23,14 @@ const navConfig = [
     icon: icon('ic_book'),
   },
   {
+    title: 'rented',  
+    path: '/admin/rent',
+    icon: icon('ic_lock'),
+  },
+  {
     title: 'config',
     path: '/admin/config',
-    icon: icon('ic_lock'),
+    icon: icon('ic_disabled'),
   },
   {
     title: 'fine',
