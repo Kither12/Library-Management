@@ -1,31 +1,16 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { mutate } from 'swr';
 
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import dayjs from 'dayjs';
 
-import Link from 'next/link';
-import { Notify } from 'notiflix';
-
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ id, selected, user_id, dead_line, add_date, handleClick }) {
-	const [open, setOpen] = useState(null);
-	const handleOpenMenu = (event) => {
-		setOpen(event.currentTarget);
-	};
-
-	const handleCloseMenu = () => {
-		setOpen(null);
-	};
-
+export default function UserTableRow({ id, selected, user_id, dead_line, add_date }) {
 	return (
 		<>
 			<TableRow hover tabIndex={-1} role='checkbox' selected={selected}>
-				{/* <TableCell padding='checkbox'>
-				</TableCell> */}
                 <TableCell></TableCell>
 
 				<TableCell>{user_id}</TableCell>
@@ -34,9 +19,6 @@ export default function UserTableRow({ id, selected, user_id, dead_line, add_dat
 
 				<TableCell>{dayjs(add_date).format('YYYY-MM-DD')}</TableCell>
 				<TableCell align='right'>
-					{/* <IconButton onClick={handleOpenMenu}>
-						<Iconify icon='eva:more-vertical-fill' />
-					</IconButton> */}
 				</TableCell>
 			</TableRow>
 		</>
