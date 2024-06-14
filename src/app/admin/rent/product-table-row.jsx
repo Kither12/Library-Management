@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-
+import dayjs from 'dayjs';
 import Iconify from '@/components/iconify';
 import { returnProduct } from './action/product-actions';
 
@@ -18,7 +18,7 @@ import Link from 'next/link';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ id, selected, title, author, added_date, genre, handleClick }) {
+export default function ProductTableRow({ id, selected, title, author, added_date, rent_date, handleClick }) {
 	const [open, setOpen] = useState(null);
 	const handleOpenMenu = (event) => {
 		setOpen(event.currentTarget);
@@ -37,9 +37,7 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 	return (
 		<>
 			<TableRow hover tabIndex={-1} role='checkbox' selected={selected}>
-				<TableCell padding='checkbox'>
-					{/* <Checkbox disableRipple checked={selected} onChange={handleClick} /> */}
-				</TableCell>
+				<TableCell padding='checkbox'>{/* <Checkbox disableRipple checked={selected} onChange={handleClick} /> */}</TableCell>
 
 				<TableCell component='th' scope='row' padding='none'>
 					<Stack direction='row' alignItems='center' spacing={2}>
@@ -48,19 +46,9 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					</Stack>
 				</TableCell>
 
-				<TableCell>{author}</TableCell>
+				<TableCell>{dayjs(rent_date).format("YYYY-MM-DD")}</TableCell>
 
-				<TableCell>
-					<Typography noWrap>{added_date}</Typography>
-				</TableCell>
-
-				<TableCell>{genre}</TableCell>
-
-				<TableCell align='right'>
-					{/* <IconButton onClick={handleOpenMenu}>
-						<Iconify icon='eva:more-vertical-fill' />
-					</IconButton> */}
-				</TableCell>
+				<TableCell>{dayjs(added_date).format("YYYY-MM-DD")}</TableCell>
 			</TableRow>
 
 			{/* <Popover

@@ -37,16 +37,20 @@ export default function LoginView() {
 	const {
         register,
 		handleSubmit,
+        setError,
 		formState: { errors },
 	} = useForm({
 		resolver: zodResolver(FormDataSchema),
 	});
 
 	const processForm = async (data) => {
-		await login({
+		const res = await login({
 			usrname: data.email,
 			password: data.password,
 		});
+        if(res === false){
+            setError('password', { type: 'custom', message: 'User name or password are wrong' });
+        }
 	};
 
 	const renderForm = (

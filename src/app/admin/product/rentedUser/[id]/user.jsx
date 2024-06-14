@@ -1,11 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import Typography from '@mui/material/Typography';
@@ -15,18 +13,19 @@ import TablePagination from '@mui/material/TablePagination';
 import Iconify from '@/components/iconify';
 
 import TableNoData from './table-no-data';
-import ProductTableRow from './product-table-row';
-import ProductTableHead from './product-table-head';
-import TableEmptyRows from './table-empty-rows';
-import ProductTableToolbar from './product-table-toolbar';
+import UserTableRow from './user-table-row';
+import UserTableHead from './user-table-head';
+import UserTableToolbar from './user-table-toolbar';
 import { useDebouncedCallback } from 'use-debounce';
 import { applyFilter, getComparator } from './utils';
-import useBook, { useRentBookCook } from '@/app/hook/useBook';
+import useUser, { useUserCook } from '@/app/hook/useUser';
 import LoadingProgress from '@/components/loading';
 import Link from 'next/link';
+import { mutate } from 'swr';
+import Notiflix from 'notiflix';
 // ----------------------------------------------------------------------
 
-export default function ProductPage() {
+export default function UserPage({ id }) {
 	const [page, setPage] = useState(0);
 
 	const [order, setOrder] = useState('asc');
@@ -41,24 +40,24 @@ export default function ProductPage() {
 
 	const [dataFiltered, setDataFiltered] = useState([]);
 
-	const { books, isLoading, isError } = useRentBookCook();
+	const { users, isLoading, isError } = useUserCook(id);
 
 	useEffect(() => {
-		if (books == undefined) return;
+		if (users == undefined) return;
 		setDataFiltered(
 			applyFilter({
-				inputData: books,
+				inputData: users,
 				comparator: getComparator(order, orderBy),
 				filterName,
 			})
 		);
-	}, [books]);
+	}, [users]);
 
 	const filterData = useDebouncedCallback(
 		() =>
 			setDataFiltered(
 				applyFilter({
-					inputData: books,
+					inputData: users,
 					comparator: getComparator(order, orderBy),
 					filterName,
 				})
@@ -67,8 +66,9 @@ export default function ProductPage() {
 	);
 
 	useEffect(() => {
+		if (users == undefined) return;
 		filterData();
-	}, [order, orderBy, filterName]);
+	}, [users, order, orderBy, filterName]);
 
 	if (isLoading) {
 		return <LoadingProgress />;
@@ -83,7 +83,7 @@ export default function ProductPage() {
 
 	const handleSelectAllClick = (event) => {
 		if (event.target.checked) {
-			const newSelecteds = books.map((n) => n.name);
+			const newSelecteds = users.map((n) => n.id);
 			setSelected(newSelecteds);
 			return;
 		}
@@ -124,37 +124,37 @@ export default function ProductPage() {
 	return (
 		<Container>
 			<Stack direction='row' alignItems='center' justifyContent='space-between' mb={5}>
-				<Typography variant='h4'>Rented books</Typography>
+				<Typography variant='h4'>Users</Typography>
+				{/* <Link href='/admin/user/add'>
+					<Button variant='contained' color='inherit' startIcon={<Iconify icon='eva:plus-fill' />}>
+						New User
+					</Button>
+				</Link> */}
 			</Stack>
 
 			<Card>
-				{/* <ProductTableToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} /> */}
 				<TableContainer sx={{ overflow: 'unset' }}>
-					<Table sx={{ width: "100%" }}>
-						<ProductTableHead
+					<Table sx={{ minWidth: 800 }}>
+						<UserTableHead
 							order={order}
 							orderBy={orderBy}
-							rowCount={books.length}
+							rowCount={users.length}
 							numSelected={selected.length}
 							onRequestSort={handleSort}
 							onSelectAllClick={handleSelectAllClick}
-							headLabel={[
-								{ id: 'title', label: 'Title', width: "40%"},
-								{ id: 'rent days', label: 'Deadline' },
-								{ id: 'added date', label: 'Added date' },
-								{ id: '' },
-							]}
+							headLabel={[{ id: 'user_id', label: 'User id' }, { id: 'dead_line', label: 'Deadline' }, { id: 'added_date', label: 'Added date' }, { id: '' }]}
 						/>
 						<TableBody>
 							{dataFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-								<ProductTableRow
+								<UserTableRow
 									id={row.id}
 									key={row.id}
-									title={row.title}
-									added_date={row.add_date}
-                                    rent_date={row.dead_line}
-									selected={selected.indexOf(row.name) !== -1}
-									handleClick={(event) => handleClick(event, row.name)}
+									user_id={row.user_id}
+									dead_line={row.dead_line}
+									add_date={row.add_date}
+									avatarUrl='/assets/images/avatar-default.svg'
+									selected={selected.indexOf(row.id) !== -1}
+									handleClick={(event) => handleClick(event, row.id)}
 								/>
 							))}
 							{notFound && <TableNoData query={filterName} />}
@@ -165,7 +165,7 @@ export default function ProductPage() {
 				<TablePagination
 					page={page}
 					component='div'
-					count={books.length}
+					count={users.length}
 					rowsPerPage={rowsPerPage}
 					onPageChange={handleChangePage}
 					rowsPerPageOptions={[5, 10, 25]}

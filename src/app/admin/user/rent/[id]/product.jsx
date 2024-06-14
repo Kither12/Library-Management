@@ -136,7 +136,7 @@ export default function ProductPage({ id, names }) {
 								numSelected={selected.length}
 								onRequestSort={handleSort}
 								onSelectAllClick={handleSelectAllClick}
-								headLabel={[{ id: 'Title', label: 'Title', width: '40%' }, { id: 'added_date', label: 'Added date' }, { id: 'max_date', label: 'Rent days' }, { id: '' }]}
+								headLabel={[{ id: 'Title', label: 'Title', width: '40%' }, { id: 'added_date', label: 'Added date' }, { id: 'max_date', label: 'Deadline' }, { id: '' }]}
 							/>
 							<TableBody>
 								{dataFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
@@ -145,7 +145,7 @@ export default function ProductPage({ id, names }) {
 										key={row.id}
 										title={row.title}
 										added_date={row.add_date}
-										rent_date={row.rent_date}
+										rent_date={row.dead_line}
 										selected={selected.indexOf(row.id) !== -1}
 										handleClick={(event) => handleClick(event, row.id)}
 									/>

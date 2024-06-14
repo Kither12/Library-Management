@@ -21,7 +21,7 @@ import TableEmptyRows from './table-empty-rows';
 import ProductTableToolbar from './product-table-toolbar';
 import { useDebouncedCallback } from 'use-debounce';
 import { applyFilter, getComparator } from './utils';
-import useBook, { useRentBookCook } from '@/app/hook/useBook';
+import useBook, { useRentBookCook, useRentTotal } from '@/app/hook/useBook';
 import LoadingProgress from '@/components/loading';
 import Link from 'next/link';
 // ----------------------------------------------------------------------
@@ -41,7 +41,7 @@ export default function ProductPage() {
 
 	const [dataFiltered, setDataFiltered] = useState([]);
 
-	const { books, isLoading, isError } = useRentBookCook();
+	const { books, isLoading, isError } = useRentTotal();
 
 	useEffect(() => {
 		if (books == undefined) return;

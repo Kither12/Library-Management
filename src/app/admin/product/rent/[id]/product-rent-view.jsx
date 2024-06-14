@@ -6,11 +6,13 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import dayjs from 'dayjs';
 import { notFound } from 'next/navigation';
 import { rentProduct } from '../../action/product-actions';
 import { title } from 'process';
 import Notiflix from 'notiflix';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
+import { useState } from 'react';
 
 const FormDataSchema = z.object({
 	id: z
@@ -28,21 +30,11 @@ const FormDataSchema = z.object({
 			},
 			{ message: 'User id is invalid.' }
 		),
-	rent_date: z.coerce
-		.number()
-		.gte(1, { message: 'Rent date must greater than zero.' })
-		.refine(
-			async (val) => {
-				const raw_res = await fetch(`http://localhost:3001/api/configLibrary/last/config`);
-				const res = await raw_res.json();
-				console.log(res);
-				return val < res.data.dayMax;
-			},
-			{ message: 'Rent day must less than day in config' }
-		),
+	deadline: z.any()
 });
 
 export default function ProductView({ id, title }) {
+    const [deadline, setDeadline] = useState(dayjs());
 	const {
 		register,
 		handleSubmit,
@@ -53,13 +45,13 @@ export default function ProductView({ id, title }) {
 
 	const processForm = async (data) => {
 		await rentProduct({
-            book_id: id,
-            title: title,
-            user_id: data.id,
-            rent_date: data.rent_date,
-            add_date: dayjs(),
-        });
-        Notiflix.Notify.success("Rent succesfully");
+			book_id: id,
+			title: title,
+			user_id: data.id,
+			dead_line: deadline,
+			add_date: dayjs(),
+		});
+		Notiflix.Notify.success('Rent succesfully');
 	};
 	return (
 		<form onSubmit={handleSubmit(processForm)}>
@@ -67,12 +59,19 @@ export default function ProductView({ id, title }) {
 				<Stack spacing={2}>
 					<Typography variant='h4'>Rent book</Typography>
 					<TextField {...register('id')} error={errors.id?.message} helperText={errors.id?.message && errors.id.message} label='User Id' sx={{ width: '100%' }} />
-					<TextField
-						{...register('rent_date')}
-						error={errors.rent_date?.message}
-						helperText={errors.rent_date?.message && errors.rent_date.message}
-						label='Rent date'
+					<DatePicker
 						sx={{ width: '100%' }}
+						error={errors.deadline?.message}
+						slotProps={{
+							textField: {
+								helperText: errors.deadline?.message && errors.deadline.message,
+							},
+						}}
+						label='Deadline'
+                        onChange={(value) => {
+							setDeadline(value);
+						}}
+						value={deadline}
 					/>
 					<Stack direction='row' spacing={2} justifyContent='end'>
 						<Button type='submit' variant='contained' color='success'>

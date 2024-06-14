@@ -46,15 +46,9 @@ export default function ProductTableRow({ id, selected, title, author, added_dat
 					</Stack>
 				</TableCell>
 
-				<TableCell>{rent_date}</TableCell>
+				<TableCell>{dayjs(rent_date).format("YYYY-MM-DD")}</TableCell>
 
-				<Typography noWrap>{dayjs(added_date).format("YYYY-MM-DD")}</Typography>
-
-				<TableCell align='right'>
-					{/* <IconButton onClick={handleOpenMenu}>
-						<Iconify icon='eva:more-vertical-fill' />
-					</IconButton> */}
-				</TableCell>
+				<TableCell>{dayjs(added_date).format("YYYY-MM-DD")}</TableCell>
 			</TableRow>
 
 			{/* <Popover

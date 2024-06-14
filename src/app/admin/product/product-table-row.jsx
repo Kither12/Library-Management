@@ -88,6 +88,13 @@ export default function ProductTableRow({ id, selected, title, author, publisher
 					</MenuItem>
 				</Link>
 
+				<Link href={`/admin/product/rentedUser/${id}`} style={{ textDecoration: 'none' }}>
+					<MenuItem onClick={handleCloseMenu}>
+						<Iconify icon='ep:avatar' sx={{ mr: 2 }} />
+						Rented User
+					</MenuItem>
+				</Link>
+
 				<MenuItem onClick={handleDeleteProduct} sx={{ color: 'error.main' }}>
 					<Iconify icon='eva:trash-2-outline' sx={{ mr: 2 }} />
 					Delete

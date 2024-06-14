@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-
+import dayjs from 'dayjs';
 import Iconify from '@/components/iconify';
 
 import Link from 'next/link';
@@ -41,9 +41,9 @@ export default function ProductTableRow({ id, selected, title, rent_date, added_
 					</Stack>
 				</TableCell>
 
-				<TableCell>{added_date}</TableCell>
+				<TableCell>{dayjs(added_date).format("YYYY-MM-DD")}</TableCell>
 
-				<TableCell>{rent_date}</TableCell>
+				<TableCell>{dayjs(rent_date).format("YYYY-MM-DD")}</TableCell>
 
 				<TableCell align='right'>
 					<IconButton onClick={handleOpenMenu}>

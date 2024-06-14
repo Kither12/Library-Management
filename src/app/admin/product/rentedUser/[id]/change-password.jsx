@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { sha3_512 } from 'js-sha3';
 import Link from 'next/link';
-import { changePassword } from './action/product-actions';
+import { changePassword } from '@/app/login/login-action';
 
 const FormDataSchema = z.object({
 	password: z.any(),
@@ -21,6 +21,7 @@ export default function ChangePasswordUser({ id }) {
 		handleSubmit,
 		watch,
 		reset,
+        setError,
 		formState: { errors },
 	} = useForm({
 		resolver: zodResolver(FormDataSchema),
@@ -29,10 +30,13 @@ export default function ChangePasswordUser({ id }) {
     const changePasswordWithID = changePassword.bind(null, id);
 
 	const processForm = async (data) => {
-		await changePasswordWithID({
-			password: sha3_512(data.password),
-			new_password: sha3_512(data.new_password),
+		const res = await changePasswordWithID({
+			password: data.password,
+			new_password: data.new_password,
 		});
+        if(res === false){
+            setError('password', { type: 'custom', message: 'password are wrong' });
+        }
 	};
 	return (
 		<form onSubmit={handleSubmit(processForm)}>
@@ -40,7 +44,7 @@ export default function ChangePasswordUser({ id }) {
 				<Stack spacing={2}>
 					<Typography variant='h4'>Change password</Typography>
 					<TextField {...register('password')} error={errors.password?.message} helperText={errors.password?.message && errors.password.message} label='Old password' sx={{ width: '100%' }} type='password' />
-					<TextField {...register('new_password')} error={errors.new_password?.message} helperText={errors.new_password?.message && errors.new_password.message} label='New password' sx={{ width: '100%' }} typo='password' />
+					<TextField {...register('new_password')} error={errors.new_password?.message} helperText={errors.new_password?.message && errors.new_password.message} label='New password' sx={{ width: '100%' }} type='password' />
 					<Stack direction='row' spacing={2} justifyContent='end'>
 						<Button type="submit" variant='contained' color='success'>
 							Confirm

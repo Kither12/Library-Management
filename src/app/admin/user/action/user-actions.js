@@ -1,14 +1,21 @@
 'use server';
+import { signup } from '@/app/login/login-action';
 import { redirect } from 'next/navigation';
 
-export async function addUser(formData) {
-	const res = await fetch(`http://localhost:3001/api/readers`, {
+export async function addUser(formData, ref) {
+	let res = await fetch(`http://localhost:3001/api/readers`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(formData),
 	});
+    res = await res.json();
+    await signup({
+        id: String(res.data.id),
+        email: formData.email,
+        password: formData.password,
+    })
 	redirect(`/admin/user`);
 }
 export async function editUser(id, formData) {
@@ -36,7 +43,7 @@ export async function changePassword(id, formData) {
 	});
 }
 export async function banUser({ id }) {
-    await fetch(`http://localhost:3001/bans/${id}`, {
+	await fetch(`http://localhost:3001/bans/${id}`, {
 		method: 'POST',
 	});
 }
